@@ -93,8 +93,8 @@ final class Superbkitaddons_Extension {
 	 */
 	public function __construct() {
 
-		add_action( 'init', [ $this, 'i18n' ] );
-		add_action( 'plugins_loaded', [ $this, 'init' ] );
+		add_action( 'required_elementor_init_do_work', [ $this, 'required_elementor_load_textdomain' ] );
+		add_action( 'plugins_loaded', [ $this, 'required_elementor_init_do_work' ] );
 
 	}
 
@@ -109,7 +109,7 @@ final class Superbkitaddons_Extension {
 	 *
 	 * @access public
 	 */
-	public function i18n() {
+	public function required_elementor_load_textdomain() {
 
 		load_plugin_textdomain( 'superbkit-addons', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 
@@ -128,7 +128,7 @@ final class Superbkitaddons_Extension {
 	 *
 	 * @access public
 	 */
-	public function init() {
+	public function required_elementor_init_do_work() {
 
 		// Check if Elementor installed and activated
 		if ( ! did_action( 'elementor/loaded' ) ) {

@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-final class Superbkitaddons_Extension {
+final class Ha_Elementor_SuperBkitAddons {
 
 	/**
 	 * Plugin Version
@@ -59,7 +59,7 @@ final class Superbkitaddons_Extension {
 	 * @access private
 	 * @static
 	 *
-	 * @var Superbkitaddons_Extension The single instance of the class.
+	 * @var Ha_Elementor_SuperBkitAddons The single instance of the class.
 	 */
 	private static $_instance = null;
 
@@ -73,7 +73,7 @@ final class Superbkitaddons_Extension {
 	 * @access public
 	 * @static
 	 *
-	 * @return Superbkitaddons_Extension An instance of the class.
+	 * @return Ha_Elementor_SuperBkitAddons An instance of the class.
 	 */
 	public static function instance() {
 
@@ -149,11 +149,11 @@ final class Superbkitaddons_Extension {
 		}
 
 		// Register Widget Styles
-		add_action( 'elementor/frontend/after_enqueue_styles', [ $this, 'widget_styles' ] );
+		add_action( 'elementor/frontend/after_enqueue_styles', [ $this, 'ha_elementor_widget_styles' ] );
 
 		// Add Plugin actions
-		add_action( 'elementor/widgets/widgets_registered', [ $this, 'init_widgets' ] );
-		add_action( 'elementor/controls/controls_registered', [ $this, 'init_controls' ] );
+		add_action( 'elementor/widgets/widgets_registered', [ $this, 'ha_elementor_init_widgets' ] );
+		add_action( 'elementor/controls/controls_registered', [ $this, 'ha_elementor_init_controls' ] );
 
         // Category Init
 		//add_action( 'elementor/init', [ $this, 'elementor_common_category' ] );
@@ -243,11 +243,11 @@ final class Superbkitaddons_Extension {
 	 *
 	 * @access public
 	 */
-	public function init_widgets() {
+	public function ha_elementor_init_widgets() {
 
 		require_once( __DIR__ . '/widgets/team.php' );
 
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Team_Widget() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Ha_Elementor_Team_Widget() );
 
 	}
 
@@ -260,13 +260,13 @@ final class Superbkitaddons_Extension {
 	 *
 	 * @access public
 	 */
-	public function init_controls() {
+	public function ha_elementor_init_controls() {
 
 
 	}
 
 	// Custom CSS
-	public function widget_styles() {
+	public function ha_elementor_widget_styles() {
 
 		wp_register_style( 'poppins', 'https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap' );
 
@@ -278,11 +278,11 @@ final class Superbkitaddons_Extension {
 	}	
 
     // Custom JS
-	public function widget_scripts() {
+	public function ha_elementor_widget_scripts() {
 		wp_register_script( 'superbkit-addons-js', plugins_url( 'main.js', __FILE__ ) );
 	}
 
 
 }
 
-Superbkitaddons_Extension::instance();
+Ha_Elementor_SuperBkitAddons::instance();

@@ -6,7 +6,7 @@
  *
  * @since 1.0.0
  */
-class Team_Widget extends \Elementor\Widget_Base {
+class Ha_Elementor_Team_Widget extends \Elementor\Widget_Base {
 
 	/**
 	 * Get widget name.
